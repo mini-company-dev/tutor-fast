@@ -1,4 +1,3 @@
-from tkinter import NO
 import httpx
 
 from auth.auth_response import AuthResponse

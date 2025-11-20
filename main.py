@@ -7,16 +7,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000"
-]
+origins = ["http://localhost:3000", "https://easyfunspeak.com"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,        # 허용할 origin
-    allow_credentials=True,        # 쿠키/인증 허용
-    allow_methods=["*"],           # GET, POST, DELETE 등 모두 허용
-    allow_headers=["*"],           # 헤더 전체 허용
+    allow_origins=origins,  # 허용할 origin
+    allow_credentials=True,  # 쿠키/인증 허용
+    allow_methods=["*"],  # GET, POST, DELETE 등 모두 허용
+    allow_headers=["*"],  # 헤더 전체 허용
 )
 
 

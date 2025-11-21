@@ -1,10 +1,17 @@
+from enum import Enum
 import uuid
 from sqlalchemy import Column, DateTime, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from app.db.config import Base
-from app.enums.member_role import MEMBER_ROLE
-from app.enums.member_status import MEMBER_STATUS
 
+class MEMBER_ROLE(str, Enum):
+    USER = "User"
+    TUTOR = "Tutor"
+    ADMIN = "Admin"
+
+class MEMBER_STATUS(str, Enum):
+    ACTIVE = "Active"
+    INACTIVE = "Inactive"
 
 class Member(Base):
     __tablename__ = "member"

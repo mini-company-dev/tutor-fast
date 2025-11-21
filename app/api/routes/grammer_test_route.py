@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, Query
 from typing import List
 
-from app.enums.level import LEVEL
-from app.enums.test_type import TEST_TYPE
+from app.models.grammar_test import LEVEL, TEST_TYPE
 from app.schemas.global_response import GlobalResponse
 from app.schemas.grammar_test_response import GrammarTestResponse
 from app.services.grammar_test_service import GrammarTestService

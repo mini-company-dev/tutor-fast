@@ -10,7 +10,7 @@ from app.db.base import Base
 
 engine = create_async_engine(
     settings.DATABASE_URL_ASYNC,
-    echo=True,
+    echo=False,
 )
 
 AsyncSessionLocal = async_sessionmaker(

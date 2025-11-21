@@ -7,3 +7,6 @@ class AuthResponse(BaseModel):
     email: str
     name: str
     picture: str
+
+class SuccessResponse(BaseModel):
+    token: str

@@ -1,11 +1,16 @@
 from datetime import datetime, timedelta, timezone
-from jose import jwt
+from jose import JWTError, jwt
 
-SECRET_KEY = "change_me_to_something_secure" # 이거 나중에 바꾸자
+from auth.auth_response import SuccessResponse
+
+SECRET_KEY = "change_me_to_something_secure"  # 이거 나중에 바꾸자
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7일
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
+
+def create_access_token(
+    data: dict, expires_delta: timedelta | None = None
+) -> SuccessResponse:
     to_encode = data.copy()
 
     expire = datetime.now(timezone.utc) + (
@@ -13,5 +18,13 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     )
     to_encode.update({"exp": expire})
 
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    token = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return SuccessResponse(token=token)
+
+
+def verify_access_token(token: str) -> dict | None:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError:
+        return None

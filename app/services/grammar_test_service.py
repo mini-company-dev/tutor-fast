@@ -4,7 +4,7 @@ from sqlalchemy.orm import selectinload
 import random
 
 from app.models.grammar_test import GrammarTest
-from app.schemas.grammar_test import GrammarTestResponse
+from app.schemas.grammar_test_response import GrammarTestResponse
 
 
 class GrammarTestService:

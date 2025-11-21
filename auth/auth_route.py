@@ -5,6 +5,7 @@ from app.db.config import get_session
 from app.models.member import Member
 from app.schemas.global_response import GlobalResponse
 from app.services.member_service import MemberService
+from auth.auth_response import SuccessResponse
 from auth.google_service import verify_google_token
 from auth.jwt_utils import create_access_token
 from auth.models import GoogleAuthRequest, TokenPayload
@@ -18,7 +19,7 @@ def get_service(
     return MemberService(session)
 
 
-@router.post("/auth/google")
+@router.post("/auth/google", response_model=GlobalResponse[SuccessResponse])
 async def google_login(
     body: GoogleAuthRequest, service: MemberService = Depends(get_service)
 ):
@@ -35,4 +36,4 @@ async def google_login(
     jwt_payload = payload.model_dump()
 
     token = create_access_token(jwt_payload)
-    return GlobalResponse.success("bearer " + token)
+    return GlobalResponse.success(token)

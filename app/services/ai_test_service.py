@@ -6,7 +6,7 @@ from google import genai
 from fastapi import HTTPException
 
 from app.core.config import settings
-from app.schemas.ai_test import HistoryRequest, TutorResponse
+from app.schemas.ai_test_response import HistoryRequest, TutorResponse
 
 
 class AiTestService:

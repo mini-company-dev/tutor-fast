@@ -3,7 +3,7 @@ from fastapi import Depends
 from typing import List, Optional
 import json
 
-from app.schemas.ai_test import HistoryRequest
+from app.schemas.ai_test_response import HistoryRequest, TutorResponse
 from app.schemas.global_response import GlobalResponse
 from app.services.ai_test_service import AiTestService
 
@@ -14,7 +14,7 @@ def get_service():
     return AiTestService()
 
 
-@router.post("")
+@router.post("", response_model=GlobalResponse[TutorResponse])
 async def evaluate(
     file: UploadFile = File(...),
     history: Optional[str] = Form(None),

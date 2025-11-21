@@ -18,5 +18,5 @@ class GlobalResponse(BaseModel, Generic[T]):
         return GlobalResponse[None](message=None, code=0, data=None)
 
     @staticmethod
-    def error(message: str, code: int) -> "GlobalResponse[None]":
-        return GlobalResponse[None](message=message, code=code, data=None)
+    def error(message: str) -> "GlobalResponse[None]":
+        return GlobalResponse[None](message=message, code=0, data=None)
